@@ -20,6 +20,6 @@ object Modules {
 
     object Features {
         const val HOME = ":features:home"
-        const val ONBOARDING = ":features:onboarding"
+        const val SPLASHSCREEN = ":features:splashscreen"
     }
 }
