@@ -28,7 +28,7 @@ include(":app")
 include(":data")
 include(":domain")
 include(":shared")
-include(":common")
+include(":utils")
 
 include(":core")
 include(":core:network")

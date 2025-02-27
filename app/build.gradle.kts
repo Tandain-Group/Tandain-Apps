@@ -19,7 +19,7 @@ android {
 dependencies {
     implementation(project(Modules.DOMAIN))
     implementation(project(Modules.DATA))
-    implementation(project(Modules.COMMON))
+    implementation(project(Modules.UTILS))
     implementation(project(Modules.SHARED))
     implementation(project(Modules.Core.RESOURCES))
     implementation(project(Modules.Features.SPLASHSCREEN))
