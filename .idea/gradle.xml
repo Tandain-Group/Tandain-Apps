@@ -21,7 +21,6 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/buildLogic" />
-            <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/core/component" />
             <option value="$PROJECT_DIR$/core/database" />
@@ -33,7 +32,9 @@
             <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/features" />
             <option value="$PROJECT_DIR$/features/home" />
+            <option value="$PROJECT_DIR$/features/splashscreen" />
             <option value="$PROJECT_DIR$/shared" />
+            <option value="$PROJECT_DIR$/utils" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

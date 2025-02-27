@@ -24,16 +24,20 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 rootProject.name = "Tandain"
 include(":app")
-include(":core")
-include(":features")
+
 include(":data")
 include(":domain")
 include(":shared")
-include(":common")
+include(":utils")
+
+include(":core")
 include(":core:network")
 include(":core:database")
 include(":core:resources")
 include(":core:component")
 include(":core:datastore")
 include(":core:navigation")
+
+include(":features")
 include(":features:home")
+include(":features:splashscreen")

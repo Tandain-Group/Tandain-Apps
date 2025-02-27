@@ -4,7 +4,7 @@ object Modules {
     const val DATA = ":data"
     const val DOMAIN = ":domain"
     const val SHARED = ":shared"
-    const val COMMON = ":common"
+    const val UTILS = ":utils"
 
     object Core {
         const val DATA = ":core:data"
@@ -20,6 +20,6 @@ object Modules {
 
     object Features {
         const val HOME = ":features:home"
-        const val ONBOARDING = ":features:onboarding"
+        const val SPLASHSCREEN = ":features:splashscreen"
     }
 }
