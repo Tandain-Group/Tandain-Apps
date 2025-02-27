@@ -68,3 +68,4 @@ Contributions are welcome! If you'd like to contribute, please follow these step
 3. Commit your changes.
 4. Push your branch and open a pull request.
    
+Link Figma: https://www.figma.com/design/kwR0ALF8YFI5xMrGQJDYSp/Tandain
