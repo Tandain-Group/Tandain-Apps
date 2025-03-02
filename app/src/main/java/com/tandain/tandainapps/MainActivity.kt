@@ -21,6 +21,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             TandainTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    // TODO: Adjust view, add TandainAppState
                     TandainNavHost(modifier = Modifier.padding(innerPadding))
                 }
             }
