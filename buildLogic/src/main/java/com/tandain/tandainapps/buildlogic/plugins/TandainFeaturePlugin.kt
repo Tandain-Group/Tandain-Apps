@@ -19,12 +19,9 @@ class TandainFeaturePlugin: Plugin<Project> {
     }
 
     private fun Project.configureFeaturePlugins() {
-        // TODO : Adjust later
-//        apply(plugin = "org.jetbrains.kotlin.kapt")
-//        apply(plugin = "androidx.navigation.safeargs")
-//        apply(plugin = "kotlin-parcelize")
-//        apply(plugin = "com.google.gms.google-services")
-//        apply(plugin = "com.google.firebase.crashlytics")
+        apply(plugin = "org.jetbrains.kotlin.plugin.serialization")
+        apply(plugin = "com.tandain.tandainapps.library")
+        apply(plugin = "com.tandain.tandainapps.library.compose")
     }
 
     private fun Project.configureBuildFeatures() {
@@ -47,7 +44,7 @@ class TandainFeaturePlugin: Plugin<Project> {
             add(implementationConfigName, project(Modules.Core.NETWORK))
             add(implementationConfigName, project(Modules.Core.RESOURCES))
 
-            // External library, TODO : Adjust later
+            // External library, TODO : Clean the dependency!
             add(implementationConfigName, libs.findLibrary("androidx-core-ktx").get())
             add(implementationConfigName, libs.findLibrary("androidx-appcompat").get())
             add(implementationConfigName, libs.findLibrary("androidx-constraintlayout").get())
@@ -65,6 +62,7 @@ class TandainFeaturePlugin: Plugin<Project> {
             add(implementationConfigName, libs.findLibrary("gson").get())
             add(implementationConfigName, libs.findLibrary("navigation-fragment-ktx").get())
             add(implementationConfigName, libs.findLibrary("navigation-ui-ktx").get())
+            add(implementationConfigName, libs.findLibrary("androidx-navigation-compose").get())
         }
     }
 }
