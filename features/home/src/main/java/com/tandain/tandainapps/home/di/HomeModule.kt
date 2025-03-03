@@ -5,7 +5,7 @@ import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module
 
-fun loadHomeModule() {
+internal fun loadHomeModule() {
     loadKoinModules(
         listOf(
             homeViewModelModule
