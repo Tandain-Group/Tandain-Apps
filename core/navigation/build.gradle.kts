@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.tandain.library)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.tandain.lib.compose)
 }
 
 android {

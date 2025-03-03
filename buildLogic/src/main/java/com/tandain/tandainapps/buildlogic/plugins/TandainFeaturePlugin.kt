@@ -44,23 +44,19 @@ class TandainFeaturePlugin: Plugin<Project> {
             add(implementationConfigName, project(Modules.Core.NETWORK))
             add(implementationConfigName, project(Modules.Core.RESOURCES))
 
-            // External library, TODO : Clean the dependency!
+            // External libraries
             add(implementationConfigName, libs.findLibrary("androidx-core-ktx").get())
             add(implementationConfigName, libs.findLibrary("androidx-appcompat").get())
-            add(implementationConfigName, libs.findLibrary("androidx-constraintlayout").get())
             add(implementationConfigName, libs.findLibrary("androidx-material3-android").get())
             add(implementationConfigName, libs.findLibrary("koin-core").get())
             add(implementationConfigName, libs.findLibrary("koin-android").get())
+            add(implementationConfigName, libs.findLibrary("koin-androidx-compose").get())
             add(implementationConfigName, libs.findLibrary("kotlinx-coroutines-core").get())
             add(implementationConfigName, libs.findLibrary("kotlinx-coroutines-android").get())
-            add(implementationConfigName, libs.findLibrary("retrofit-core").get())
             add(implementationConfigName, libs.findLibrary("retrofit-kotlin-serialization").get())
             add(implementationConfigName, libs.findLibrary("kotlinx-coroutines-android").get())
             add(implementationConfigName, libs.findLibrary("lifecycle-viewmodel-ktx").get())
             add(implementationConfigName, libs.findLibrary("lifecycle-livedata-ktx").get())
-            add(implementationConfigName, libs.findLibrary("fragment-ktx").get())
-            add(implementationConfigName, libs.findLibrary("gson").get())
-            add(implementationConfigName, libs.findLibrary("navigation-fragment-ktx").get())
             add(implementationConfigName, libs.findLibrary("navigation-ui-ktx").get())
             add(implementationConfigName, libs.findLibrary("androidx-navigation-compose").get())
         }
