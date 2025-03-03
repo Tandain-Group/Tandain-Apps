@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.startup.Initializer
 
 /**
- * Class to initialize dependency before app started efficiently.
+ * Class to initialize dependency efficiently before the app started.
  * TODO: Add database initiation
  */
 class CommonInitializer : Initializer<Unit> {
