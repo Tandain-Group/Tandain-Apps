@@ -8,14 +8,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.tandain.tandainapps.navigation.route.HomeRoute
-import com.tandain.tandainapps.navigation.route.SplashScreenRoute
+import com.tandain.tandainapps.home.model.HomeUiEvent
 
 // TODO: Add actual implementation
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    onButtonClick: (route: Any) -> Unit = {}
+    viewModel: HomeViewModel
 ) {
     Box(
         modifier = Modifier
@@ -24,7 +23,7 @@ fun HomeScreen(
     ) {
         Column {
             Text(text = "This is HomeScreen")
-            Button(onClick = { onButtonClick(SplashScreenRoute) }) {
+            Button(onClick = { viewModel.navigationHandler(HomeUiEvent.NavigateToSplashScreen)}) {
                 Text(text = "Click me!")
             }
         }
@@ -34,8 +33,7 @@ fun HomeScreen(
 // TODO: Move to splashscreen module and add actual implementation
 @Composable
 fun SplashScreen(
-    modifier: Modifier = Modifier,
-    onButtonClick: (route: Any) -> Unit = {}
+    modifier: Modifier = Modifier
 ) {
     Box(
         modifier = Modifier
@@ -44,7 +42,7 @@ fun SplashScreen(
     ) {
         Column {
             Text(text = "This is SplashScreen")
-            Button(onClick = { onButtonClick(HomeRoute) }) {
+            Button(onClick = {}) {
                 Text(text = "Click me!")
             }
         }

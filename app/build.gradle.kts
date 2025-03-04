@@ -20,6 +20,10 @@ dependencies {
     implementation(project(Modules.Core.NAVIGATION))
     implementation(project(Modules.Features.HOME))
 
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
+
     implementation(libs.androidx.activity)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.core.ktx)
