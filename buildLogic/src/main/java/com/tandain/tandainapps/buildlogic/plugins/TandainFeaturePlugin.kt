@@ -53,7 +53,6 @@ class TandainFeaturePlugin: Plugin<Project> {
             add(implementationConfigName, libs.findLibrary("koin-androidx-compose").get())
             add(implementationConfigName, libs.findLibrary("kotlinx-coroutines-core").get())
             add(implementationConfigName, libs.findLibrary("kotlinx-coroutines-android").get())
-            add(implementationConfigName, libs.findLibrary("retrofit-kotlin-serialization").get())
             add(implementationConfigName, libs.findLibrary("kotlinx-coroutines-android").get())
             add(implementationConfigName, libs.findLibrary("lifecycle-viewmodel-ktx").get())
             add(implementationConfigName, libs.findLibrary("lifecycle-livedata-ktx").get())

@@ -16,6 +16,15 @@ object NavHelper {
     }
 }
 
+/**
+ * This function is collected observable flow for single live event
+ * Single live event in flow can use ChannelFlow or SharedFlow
+ *
+ * @param flow The Flow to be observed.
+ * @param key1 Optional recomposition key to restart collection when changed.
+ * @param key2 Another optional recomposition key.
+ * @param onEvent Callback function triggered for each emitted value.
+ */
 @Composable
 fun <T> ObserveAsEvents(
     flow: Flow<T>,
