@@ -8,7 +8,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.tandain.tandainapps.home.model.HomeUiEvent
+import com.tandain.tandainapps.navigation.route.Destination
 
 // TODO: Add actual implementation
 @Composable
@@ -23,7 +23,7 @@ fun HomeScreen(
     ) {
         Column {
             Text(text = "This is HomeScreen")
-            Button(onClick = { viewModel.navigationHandler(HomeUiEvent.NavigateToSplashScreen)}) {
+            Button(onClick = { viewModel.navigate(route = Destination.SplashScreen) }) {
                 Text(text = "Click me!")
             }
         }
