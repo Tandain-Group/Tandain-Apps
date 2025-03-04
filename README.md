@@ -50,7 +50,7 @@ Welcome to the **Tandain Apps**! This repository contains a collection of Tandai
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Android Studio (latest version recommended)
+- Android Studio version minimum at Iguana 2023.2.1 (latest version recommended)
 
 ### Installation
 1. Clone the repository:
