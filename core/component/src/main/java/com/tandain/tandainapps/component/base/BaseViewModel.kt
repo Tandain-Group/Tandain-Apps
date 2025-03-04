@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavOptionsBuilder
 import com.tandain.tandainapps.navigation.interfaces.Navigator
 import com.tandain.tandainapps.navigation.route.Destination
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 abstract class BaseViewModel(
@@ -19,7 +20,7 @@ abstract class BaseViewModel(
     fun navigate(
         route: Destination,
         builder: NavOptionsBuilder.() -> Unit = {}
-    ) = viewModelScope.launch {
+    ) = viewModelScope.launch(Dispatchers.Main) {
         navigator.navigate(destination = route, navOptions = builder)
     }
 }
