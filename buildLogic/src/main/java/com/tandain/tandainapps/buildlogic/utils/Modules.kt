@@ -1,4 +1,4 @@
-package com.ecommerce.buildlogic.utils
+package com.tandain.tandainapps.buildlogic.utils
 
 object Modules {
     const val DATA = ":data"
