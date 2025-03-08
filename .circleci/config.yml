@@ -25,12 +25,6 @@ jobs:
           system-image:
             - system-images;android-30;google_apis;x86
             - system-images;android-29;google_apis;x86
-            - system-images;android-28;google_apis;x86
-            - system-images;android-27;google_apis;x86
-            - system-images;android-26;google_apis;x86
-            - system-images;android-26;google_apis;x86
-            - system-images;android-26;google_apis;x86
-            - system-images;android-26;google_apis;x86
       - android/run-tests:
           test-command: ./gradlew testDebug
       - run:
@@ -45,7 +39,9 @@ jobs:
           path: ~/test-results/junit
       - android/start-emulator-and-run-tests:
           test-command: ./gradlew connectedDebugAndroidTest
-          system-image: << parameters.system-image >>
+          system-image:
+            - system-images;android-30;google_apis;x86
+            - system-images;android-29;google_apis;x86
             - run:
                 name: Save test results
                 command: |
