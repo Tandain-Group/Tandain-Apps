@@ -5,9 +5,8 @@ orbs:
 
 jobs:
   unit-test:
-    executor:
-      name: android/android-machine  # Fixed: Replaced docker executor
-      resource-class: xlarge         # Ensuring enough resources
+    docker:
+      - image: cimg/android:2022.08  # ✅ Using a valid Android Docker image
     steps:
       - checkout
       - run:
@@ -30,9 +29,8 @@ jobs:
           key: gradle-{{ checksum "build.gradle" }}
 
   android-test:
-    executor:
-      name: android/android-machine
-      resource-class: xlarge
+    docker:
+      - image: cimg/android:2022.08
     steps:
       - checkout
       - run:
@@ -55,9 +53,8 @@ jobs:
           path: ~/test-results/junit
 
   release-build:
-    executor:
-      name: android/android-machine
-      resource-class: xlarge
+    docker:
+      - image: cimg/android:2022.08
     steps:
       - checkout
       - run:
@@ -72,8 +69,7 @@ jobs:
             - ~/.gradle/wrapper
       - run:
           name: Assemble release build
-          command: |
-            ./gradlew assembleRelease
+          command: ./gradlew assembleRelease
       - store_artifacts:
           path: app/build/outputs/apk/release
       - save_cache:
@@ -86,11 +82,11 @@ workflows:
   test-and-build:
     jobs:
       - unit-test
-      - android-test: # Commits to any branch - skip matrix of devices
+      - android-test:
           filters:
             branches:
               ignore: main
-      - android-test: # Commits to main branch only - run full matrix
+      - android-test:
           matrix:
             alias: android-test-all
             parameters:
