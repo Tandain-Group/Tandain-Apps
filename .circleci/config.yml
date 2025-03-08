@@ -6,7 +6,7 @@ executors:
       - image: cimg/android:2023.02 # Use a recent CircleCI Android image
     resource_class: large
     environment:
-      JAVA_VERSION: 17 # Set the Java version
+      JAVA_VERSION: 11 # Set the Java version
       GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.jvmargs='-Xmx4g'" # Optimize Gradle memory usage
 
 jobs:
