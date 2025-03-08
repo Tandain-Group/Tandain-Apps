@@ -58,6 +58,7 @@ class TandainFeaturePlugin: Plugin<Project> {
             add(implementationConfigName, libs.findLibrary("lifecycle-livedata-ktx").get())
             add(implementationConfigName, libs.findLibrary("navigation-ui-ktx").get())
             add(implementationConfigName, libs.findLibrary("androidx-navigation-compose").get())
+            add(implementationConfigName, libs.findLibrary("firebase-bom").get())
         }
     }
 }

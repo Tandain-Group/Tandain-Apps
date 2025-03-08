@@ -7,4 +7,5 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android) apply false
     alias(libs.plugins.compose) apply false
     alias(libs.plugins.kotlin.serialization) apply false
+    alias(libs.plugins.gms) apply false
 }
