@@ -1,7 +1,7 @@
 package com.tandain.tandainapps.buildlogic.plugins
 
 import com.android.build.api.dsl.ApplicationExtension
-import com.ecommerce.buildlogic.utils.AppConfig
+import com.tandain.tandainapps.buildlogic.utils.AppConfig
 import com.tandain.tandainapps.buildlogic.ext.configureKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -13,6 +13,7 @@ class TandainApplicationPlugin: Plugin<Project> {
         with(target) {
             apply(plugin = "com.android.application")
             apply(plugin = "org.jetbrains.kotlin.android")
+
             extensions.configure<ApplicationExtension> {
                 configureKotlinAndroid(this)
                 configureBuildType()

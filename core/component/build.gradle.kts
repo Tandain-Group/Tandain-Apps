@@ -1,4 +1,4 @@
-import com.ecommerce.buildlogic.utils.Modules
+import com.tandain.tandainapps.buildlogic.utils.Modules
 
 plugins {
     alias(libs.plugins.tandain.library)

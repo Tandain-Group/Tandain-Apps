@@ -1,6 +1,7 @@
 package com.tandain.tandainapps.buildlogic.ext
 
 import com.android.build.api.dsl.CommonExtension
+import com.tandain.tandainapps.buildlogic.utils.AppConfig
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -15,10 +16,10 @@ internal fun Project.configureKotlinAndroid(
 ) {
     commonExtension.apply {
 
-        compileSdk = 34
+        compileSdk = AppConfig.COMPILE_SDK
 
         defaultConfig {
-            minSdk = 24
+            minSdk = AppConfig.MIN_SDK
             testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         }
 

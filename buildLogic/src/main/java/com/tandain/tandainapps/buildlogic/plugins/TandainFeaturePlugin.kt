@@ -1,7 +1,7 @@
 package com.tandain.tandainapps.buildlogic.plugins
 
 import com.android.build.gradle.LibraryExtension
-import com.ecommerce.buildlogic.utils.Modules
+import com.tandain.tandainapps.buildlogic.utils.Modules
 import com.tandain.tandainapps.buildlogic.ext.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
