@@ -20,8 +20,9 @@ jobs:
           paths:
             - ~/.gradle/caches
             - ~/.gradle/wrapper
-      - android/run-tests:
-          test-command: ./gradlew testDebugUnitTest
+      - run:
+          name: Run Unit Tests
+          command: ./gradlew testDebugUnitTest
       - save_cache:
           paths:
             - ~/.gradle/caches
@@ -38,9 +39,11 @@ jobs:
           name: Install System Images
           command: sdkmanager "system-images;android-30;google_apis;x86" "system-images;android-29;google_apis;x86"
       - run:
-          name: Start Emulator and Run Tests
+          name: Start Emulator and Run Connected Tests
           command: |
             ./gradlew connectedDebugAndroidTest
+          environment:
+            ADB_INSTALL_TIMEOUT: '10'
       - run:
           name: Save test results
           command: |
