@@ -1,42 +1,40 @@
-# This config was automatically generated from your source code
-# Stacks detected: deps:java:.,tool:gradle:
 version: 2.1
+
+orbs:
+  android: circleci/android@2.1.2 # Official Android orb for CI/CD
+
 jobs:
-  test-java:
-    docker:
-      - image: cimg/openjdk:17.0
+  build_and_test:
+    executor:
+      name: android/android
+      tag: 2023.09.1 # Android SDK version
+    working_directory: ~/project
     steps:
-      - checkout
+      - checkout # Pull code from repository
+
+      # Restore Gradle cache to speed up builds
+      - android/restore-gradle-cache
+
+      # Run unit tests
       - run:
-          name: Calculate cache key
-          command: |-
-            find . -name 'pom.xml' -o -name 'gradlew*' -o -name '*.gradle*' | \
-                    sort | xargs cat > /tmp/CIRCLECI_CACHE_KEY
-      - restore_cache:
-          key: cache-{{ checksum "/tmp/CIRCLECI_CACHE_KEY" }}
+          name: Run Unit Tests
+          command: ./gradlew test
+
+      # Build debug APK
       - run:
-          command: ./gradlew check
-      - store_test_results:
-          path: build/test-results
-      - save_cache:
-          key: cache-{{ checksum "/tmp/CIRCLECI_CACHE_KEY" }}
-          paths:
-            - ~/.gradle/caches
+          name: Build APK
+          command: ./gradlew assembleDebug
+
+      # Save APK as build artifact
       - store_artifacts:
-          path: build/reports
-  deploy:
-    # This is an example deploy job, not actually used by the workflow
-    docker:
-      - image: cimg/base:stable
-    steps:
-      # Replace this with steps to deploy to users
-      - run:
-          name: deploy
-          command: '#e.g. ./deploy.sh'
+          path: app/build/outputs/apk/debug/app-debug.apk
+
+      # Save test results
+      - store_test_results:
+          path: app/build/test-results
+
 workflows:
-  build-and-test:
+  main_workflow:
     jobs:
-      - test-java
-    # - deploy:
-    #     requires:
-    #       - test-java
+      - build_and_test
+
