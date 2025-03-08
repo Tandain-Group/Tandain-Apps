@@ -1,5 +1,6 @@
 package com.tandain.tandainapps.buildlogic.plugins
 
+import androidx.room.gradle.RoomExtension
 import com.google.devtools.ksp.gradle.KspExtension
 import com.tandain.tandainapps.buildlogic.ext.libs
 import org.gradle.api.Plugin
@@ -13,8 +14,15 @@ class TandainRoomPlugin: Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             apply(plugin = "com.google.devtools.ksp")
+            apply(plugin = "androidx.room")
             extensions.configure<KspExtension> {
                 arg("room.generateKotlin", "true")
+            }
+            extensions.configure<RoomExtension> {
+                // The schemas directory contains a schema file for each version of the Room database.
+                // This is required to enable Room auto migrations.
+                // See https://developer.android.com/reference/kotlin/androidx/room/AutoMigration.
+                schemaDirectory("$projectDir/schemas")
             }
             configureRoomDependencies()
         }
