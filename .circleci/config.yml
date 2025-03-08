@@ -1,14 +1,13 @@
 version: 2.1
 
 orbs:
-  android: circleci/android@2.1.2 # Official Android orb for CI/CD
+  android: circleci/android@2.1.2 # Use the latest version of the Android orb
 
 jobs:
   build_and_test:
     executor:
-      name: android/android
-      tag: 2023.09.1 # Android SDK version
-    working_directory: ~/project
+      name: android/android-machine # Use the Android machine executor
+      resource-class: large # Specify resource class for better performance
     steps:
       - checkout # Pull code from repository
 
@@ -37,4 +36,3 @@ workflows:
   main_workflow:
     jobs:
       - build_and_test
-
