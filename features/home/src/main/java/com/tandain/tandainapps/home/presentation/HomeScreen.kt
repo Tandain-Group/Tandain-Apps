@@ -26,7 +26,7 @@ import com.tandain.tandainapps.home.presentation.dummy.HomeEvent
 import com.tandain.tandainapps.home.presentation.dummy.HomeState
 import kotlinx.coroutines.flow.Flow
 
-
+// TODO need to be deep research and move/refactor this into another file
 @Composable
 fun <T> rememberFlowWithLifecycle(
     flow: Flow<T>,
@@ -64,9 +64,7 @@ fun HomeScreen(
         }
     }
 
-    HomeScreen(state.value, modifier) {
-        viewModel.sendEvent(it)
-    }
+    HomeScreen(state.value, modifier, viewModel::sendEvent)
 }
 
 @Composable
