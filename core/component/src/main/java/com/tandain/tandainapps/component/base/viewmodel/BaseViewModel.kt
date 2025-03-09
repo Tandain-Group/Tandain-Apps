@@ -1,6 +1,5 @@
 package com.tandain.tandainapps.component.base.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavOptionsBuilder
@@ -10,64 +9,64 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
+interface ViewState
+interface ViewEvent
+interface ViewEffect
 
-abstract class BaseViewModel<State : Reducer.ViewState, Event : Reducer.ViewEvent, Effect : Reducer.ViewEffect>(
-    initialState: State,
-    private val reducer: Reducer<State, Event, Effect>,
+abstract class BaseViewModel<State : ViewState, Event : ViewEvent, Effect : ViewEffect>(
     private val navigator: Navigator
 ) : ViewModel() {
+
+    protected abstract fun setInitialState(): State
+    protected abstract fun handleEvents(event: Event)
+
+    private val initialState: State by lazy { setInitialState() }
     private val _state: MutableStateFlow<State> = MutableStateFlow(initialState)
-    val state: StateFlow<State>
-        get() = _state.asStateFlow()
+    val state: StateFlow<State> = _state.asStateFlow()
 
     private val _event: MutableSharedFlow<Event> = MutableSharedFlow()
-    val event: SharedFlow<Event>
-        get() = _event.asSharedFlow()
 
-    private val _effects = Channel<Effect>(capacity = Channel.CONFLATED)
+    private val _effects = Channel<Effect>()
     val effect = _effects.receiveAsFlow()
 
+    /**
+     * Optional variable for debugging data states
+     */
     val timeCapsule: TimeCapsule<State> = TimeTravelCapsule { storedState ->
         _state.tryEmit(storedState)
     }
 
     init {
+        subscribeToEvents()
         timeCapsule.addState(initialState)
     }
 
-    fun sendEffect(effect: Effect) {
-        _effects.trySend(effect)
-    }
-
-    fun sendEvent(event: Event) {
-        val (newState, _) = reducer.reduce(_state.value, event)
-
-        val success = _state.tryEmit(newState)
-
-        if (success) {
-            timeCapsule.addState(newState)
+    private fun subscribeToEvents() = viewModelScope.launch {
+        _event.collect {
+            handleEvents(it)
         }
     }
 
-    fun sendEventForEffect(event: Event) {
-        val (newState, effect) = reducer.reduce(_state.value, event)
+    fun sendEffect(effect: Effect) = viewModelScope.launch {
+        _effects.send(effect)
+    }
 
+    fun sendEvent(event: Event) = viewModelScope.launch {
+        _event.emit(event)
+    }
+
+    fun updateState(effect: Effect? = null, updates: (State) -> State) = viewModelScope.launch {
+        val newState = updates(state.value)
         val success = _state.tryEmit(newState)
-
         if (success) {
             timeCapsule.addState(newState)
         }
-
-        effect?.let {
-            sendEffect(it)
-        }
+        effect?.let { sendEffect(it) }
     }
 
     fun navigate(

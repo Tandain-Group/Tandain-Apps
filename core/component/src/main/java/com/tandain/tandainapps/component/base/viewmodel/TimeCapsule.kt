@@ -6,9 +6,9 @@ package com.tandain.tandainapps.component.base.viewmodel
  *
  * **See also:** This Medium [article](https://medium.com/@VolodymyrSch/android-simple-mvi-implementation-with-jetpack-compose-5ee5d6fc4908)
  *
- * @param State The type of [Reducer.ViewState] to store
+ * @param State The type of [ViewState] to store
  */
-interface TimeCapsule<State : Reducer.ViewState> {
+interface TimeCapsule<State : ViewState> {
     fun addState(state: State)
     fun selectState(position: Int)
     fun getStates(): List<State>
@@ -17,10 +17,10 @@ interface TimeCapsule<State : Reducer.ViewState> {
 /**
  * Time travel capsule implementing the [TimeCapsule] interface.
  *
- * @param State The type of [Reducer.ViewState] to store
+ * @param State The type of [ViewState] to store
  * @property onStateSelected Lambda function to call when debugging to retrieve stored states
  */
-class TimeTravelCapsule<State : Reducer.ViewState>(
+class TimeTravelCapsule<State : ViewState>(
     private val onStateSelected: (State) -> Unit
 ) : TimeCapsule<State> {
 
